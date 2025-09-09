@@ -234,7 +234,7 @@ const Step2FaceAnalysis: React.FC<Step2Props> = ({
                            Re-analyze
                         </Button>
                     </div>
-                    <div className="max-h-[27rem] overflow-y-auto pr-2 -mr-2">
+                    <div className="max-h-[16rem] overflow-y-auto pr-2 -mr-2">
                       {analysisResult.map((category) => {
                           const style = getCategoryStyle(category.category);
                           const Icon = style.icon;
