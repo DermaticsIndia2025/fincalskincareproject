@@ -53,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           AI Skincare Advisor
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 mb-10 sm:mb-12">
-          Your personalized path to healthier skin, powered by Gemini.
+          Your personalized path to healthier skin, powered by Dermatics India.
         </p>
 
         {/* Step Indicator */}
@@ -76,8 +76,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           {/* Footer */}
           <footer className="text-center text-xs text-slate-500 font-medium pt-4">
             <p>
-              Powered by Google Gemini. For informational purposes only.
-              Always consult a dermatologist for medical advice.
+              Powered by Dermatics India. For informational purposes only. Always consult a dermatologist for medical advice.
             </p>
           </footer>
         </div>
