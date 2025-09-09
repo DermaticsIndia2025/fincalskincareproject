@@ -1,3 +1,4 @@
+
 import React, { useCallback, useState, useEffect } from 'react';
 import { SkinConditionCategory, FaceImage } from '../types';
 import Button from './common/Button';
@@ -25,6 +26,14 @@ const Step2FaceAnalysis: React.FC<Step2Props> = ({
   const [hoveredCondition, setHoveredCondition] = useState<string | null>(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [countdown, setCountdown] = useState(60);
+  const [imageNaturalSize, setImageNaturalSize] = useState<{ width: number; height: number } | null>(null);
+  
+  const activeImage = faceImages[activeImageIndex];
+
+  useEffect(() => {
+    // When the active image changes, reset its natural size so the onLoad handler can set the new correct aspect ratio.
+    setImageNaturalSize(null);
+  }, [activeImage]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -117,15 +126,20 @@ const Step2FaceAnalysis: React.FC<Step2Props> = ({
     }
   }, [faceImages, setAnalysisResult, setIsLoading]);
 
-  const activeImage = faceImages[activeImageIndex];
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const img = e.currentTarget;
+    if (img.naturalWidth > 0 && !imageNaturalSize) {
+      setImageNaturalSize({ width: img.naturalWidth, height: img.naturalHeight });
+    }
+  };
   
   return (
-    <div className="animate-fade-in-up h-full flex flex-col w-full pb-4">
+    <div className="animate-fade-in-up h-full flex flex-col w-full">
         <div className="flex-grow overflow-y-auto pr-2 -mr-2">
           <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-2">
               <span className="text-brand-primary">Step 2:</span> AI Face Analysis
           </h2>
-           <div className="rounded-lg bg-red-50 p-4 text-[10px] sm:text-xs text-red-800 border border-red-200 mb-4 flex items-start gap-3" role="alert">
+           <div className="rounded-lg bg-red-50 p-4 text-[10px] sm:text-xs text-red-800 border border-red-200 mb-6 sm:mb-8 flex items-start gap-3" role="alert">
               <TriangleAlertIcon className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
               <p className="leading-relaxed">
                   For best results, upload clear, well-lit photos of your face — including front, left, and right views. Adding multiple images will help ensure more accurate results.
@@ -137,10 +151,17 @@ const Step2FaceAnalysis: React.FC<Step2Props> = ({
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
               <div className="lg:col-span-1 flex flex-col gap-4">
                 <div className="flex items-start gap-4">
-                   <div className="relative flex-grow aspect-video bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center overflow-hidden">
+                   <div className="relative flex-grow bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center overflow-hidden min-h-[150px]">
                     {activeImage ? (
-                        <>
-                            <img src={activeImage.previewUrl} alt={`Face preview ${activeImageIndex + 1}`} className="w-full h-full object-contain" />
+                        <div
+                          className="relative w-full"
+                          style={{
+                            aspectRatio: imageNaturalSize
+                              ? `${imageNaturalSize.width}/${imageNaturalSize.height}`
+                              : '16/9',
+                          }}
+                        >
+                            <img src={activeImage.previewUrl} alt={`Face preview ${activeImageIndex + 1}`} className="block w-full h-full object-contain" onLoad={handleImageLoad} />
                             <div className="absolute inset-0">
                                 {analysisResult.flatMap(cat =>
                                     cat.conditions.flatMap(cond =>
@@ -187,7 +208,7 @@ const Step2FaceAnalysis: React.FC<Step2Props> = ({
                                     )
                                 )}
                             </div>
-                        </>
+                        </div>
                     ) : (
                         <p className="text-slate-500">No image available</p>
                     )}
@@ -270,24 +291,33 @@ const Step2FaceAnalysis: React.FC<Step2Props> = ({
             <div className="flex flex-col items-center gap-6">
               <div className="w-full max-w-lg flex flex-col gap-4">
                  <div className="flex items-start gap-4">
-                   <div className="relative flex-grow aspect-video bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center overflow-hidden">
+                   <div className="relative flex-grow bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center overflow-hidden min-h-[150px]">
                     {activeImage ? (
-                        <img src={activeImage.previewUrl} alt={`Face preview ${activeImageIndex + 1}`} className="w-full h-full object-contain" />
+                        <div
+                          className="relative w-full"
+                          style={{
+                            aspectRatio: imageNaturalSize
+                              ? `${imageNaturalSize.width}/${imageNaturalSize.height}`
+                              : '16/9',
+                          }}
+                        >
+                            <img src={activeImage.previewUrl} alt={`Face preview ${activeImageIndex + 1}`} className="block w-full h-full object-contain" onLoad={handleImageLoad} />
+                            {isLoading && (
+                                <div className="absolute inset-0 bg-brand-dark/80 backdrop-blur-sm flex flex-col items-center justify-center text-center p-4 rounded-lg z-10 animate-fade-in-up overflow-hidden">
+                                    <div className="absolute inset-0 w-full h-full bg-[linear-gradient(to_right,rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:2rem_2rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+                                    <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+                                        <div className="absolute left-0 w-full h-1 bg-brand-primary-light/80 shadow-[0_0_20px_theme(colors.brand.primary.light)] animate-scan-line"></div>
+                                    </div>
+                                    <div className="relative animate-pulse-soft-blue w-16 h-16 border-2 border-brand-primary-light/50 rounded-full flex items-center justify-center">
+                                        <span className="text-xl font-bold text-brand-primary-light font-mono tabular-nums">{countdown}s</span>
+                                    </div>
+                                    <p className="text-xs font-semibold text-white mt-3 z-10 tracking-widest">ANALYSING</p>
+                                    <p className="text-[10px] text-slate-300 z-10">Please wait while our AI scans your image...</p>
+                                </div>
+                            )}
+                        </div>
                     ) : (
                         <p className="text-slate-500">Upload an image to begin</p>
-                    )}
-                    {isLoading && (
-                        <div className="absolute inset-0 bg-brand-dark/80 backdrop-blur-sm flex flex-col items-center justify-center text-center p-4 rounded-lg z-10 animate-fade-in-up overflow-hidden">
-                            <div className="absolute inset-0 w-full h-full bg-[linear-gradient(to_right,rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:2rem_2rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-                            <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-                                <div className="absolute left-0 w-full h-1 bg-brand-primary-light/80 shadow-[0_0_20px_theme(colors.brand.primary.light)] animate-scan-line"></div>
-                            </div>
-                            <div className="relative animate-pulse-soft-blue w-16 h-16 border-2 border-brand-primary-light/50 rounded-full flex items-center justify-center">
-                                 <span className="text-xl font-bold text-brand-primary-light font-mono tabular-nums">{countdown}s</span>
-                            </div>
-                            <p className="text-xs font-semibold text-white mt-3 z-10 tracking-widest">ANALYSING</p>
-                            <p className="text-[10px] text-slate-300 z-10">Please wait while our AI scans your image...</p>
-                        </div>
                     )}
                    </div>
                    <div className="flex flex-col gap-2">
@@ -332,7 +362,7 @@ const Step2FaceAnalysis: React.FC<Step2Props> = ({
             </div>
           )}
         </div>
-        <div className="flex-shrink-0 flex justify-between pt-2 border-t border-slate-200">
+        <div className="flex-shrink-0 flex justify-between mt-8 pt-6 border-t border-slate-200">
           <Button onClick={onBack} variant="secondary" size="sm">Back</Button>
           <Button onClick={onNext} disabled={!analysisResult} size="sm">Next: Set My Goals</Button>
         </div>

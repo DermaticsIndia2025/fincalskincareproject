@@ -180,10 +180,10 @@ const App: React.FC = () => {
 
   const totalCartItems = cart.reduce((total, item) => total + item.quantity, 0);
 
-  // Only lock scroll (overflow-hidden) if not on step 4 (Report)
-  const isReportStep = step === 4;
+  // Only lock scroll (overflow-hidden) if not on step 4 (Report) or 5 (DoctorReport)
+  const isScrollableStep = step === 4 || step === 5;
   return (
-    <div className={`w-full h-screen lg:grid lg:grid-cols-[350px,1fr] bg-brand-bg${!isReportStep ? ' overflow-hidden' : ''}`}> 
+    <div className={`w-full h-screen lg:grid lg:grid-cols-[350px,1fr] bg-brand-bg${!isScrollableStep ? ' overflow-hidden' : ''}`}> 
        {isSidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/60 z-40 lg:hidden" 
