@@ -4,10 +4,6 @@ html, body, #root {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
 }
 
 body {
@@ -18,5 +14,20 @@ body {
 #root {
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  html, body, #root {
+    overflow: hidden !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  html, body, #root {
+    overflow: auto !important;
+    position: static !important;
+  }
 }
