@@ -39,8 +39,8 @@ const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
           SignIn: {
             Header() {
               return (
-              <div className="text-center py-4">
-                <h2 className="text-base font-semibold text-brand-text-main mb-1">Welcome back</h2>
+              <div className="text-center py-2">
+                <h2 className="text-sm font-semibold text-brand-text-main mb-0.5">Welcome back</h2>
                 <p className="text-xs text-brand-text-muted">Sign in to continue your skincare journey</p>
               </div>
               );
@@ -49,9 +49,9 @@ const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
           SignUp: {
             Header() {
               return (
-              <div className="text-center py-4">
-                <h2 className="text-base font-semibold text-brand-text-main mb-1">Create your Dermatics account</h2>
-                <p className="text-xs text-brand-text-muted">Start your personalized skincare journey</p>
+              <div className="text-center py-2">
+                <h2 className="text-sm font-semibold text-brand-text-main mb-0.5">Create your Dermatics account</h2>
+                <p className="text-[11px] text-brand-text-muted leading-snug">Start your personalized skincare journey</p>
               </div>
               );
             },

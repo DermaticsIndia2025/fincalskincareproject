@@ -81,21 +81,21 @@ body {
 }
 
 [data-amplify-authenticator] [data-amplify-field] {
-  margin-bottom: 1rem !important;
+  margin-bottom: 0.5rem !important; /* tighter spacing between fields */
 }
 
 [data-amplify-authenticator] [data-amplify-field] label {
   color: #1e293b !important;
   font-weight: 500 !important;
-  font-size: 0.75rem !important;
-  margin-bottom: 0.5rem !important;
+  font-size: 0.7rem !important; /* slightly smaller label */
+  margin-bottom: 0.35rem !important; /* tighter label-to-input spacing */
 }
 
 [data-amplify-authenticator] [data-amplify-field] input {
   border: none !important;
   border-radius: 0.5rem !important;
-  padding: 0.75rem !important;
-  font-size: 0.75rem !important;
+  padding: 0.6rem 0.65rem !important; /* slightly smaller input height */
+  font-size: 0.72rem !important; /* slightly smaller input text */
   transition: all 0.2s !important;
   background: #f8fafc !important;
   box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
@@ -180,9 +180,11 @@ body {
   font-size: 0.75rem !important;
   padding: 0.75rem 1rem !important;
   border: none !important;
-  background: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
   cursor: pointer !important;
-  transition: all 0.2s !important;
+  transition: color 0.2s ease-in-out !important;
 }
 
 [data-amplify-authenticator] [data-amplify-tab][data-state="active"] {
@@ -212,8 +214,10 @@ body {
 
 [data-amplify-authenticator] .amplify-tabs__item:focus {
   color: #2563eb !important;
-  outline: 2px solid #93c5fd !important;
-  outline-offset: 2px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
 }
 
 [data-amplify-authenticator] [data-amplify-alert] {
