@@ -27,3 +27,310 @@ body {
     width: 100vw !important;
   }
 }
+
+/* Custom Amplify Authenticator Styling */
+[data-amplify-authenticator] {
+  background: #f1f5f9 !important;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  /* Force Amplify brand colors to blue */
+  --amplify-colors-brand-primary: #2563eb;
+  --amplify-colors-brand-primary-10: #eff6ff;
+  --amplify-colors-brand-primary-20: #dbeafe;
+  --amplify-colors-brand-primary-40: #60a5fa;
+  --amplify-colors-brand-primary-60: #2563eb;
+  --amplify-colors-brand-primary-80: #1d4ed8;
+  --amplify-colors-brand-primary-90: #1e40af;
+  --amplify-colors-brand-primary-100: #1e3a8a;
+
+  /* Buttons & links */
+  --amplify-components-button-primary-background-color: #2563eb;
+  --amplify-components-button-primary-hover-background-color: #1d4ed8;
+  --amplify-components-button-primary-active-background-color: #1e40af;
+  --amplify-components-link-color: #2563eb;
+}
+
+/* Center the card on all sizes and prevent right-side shift */
+[data-amplify-authenticator] [data-amplify-router] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+[data-amplify-authenticator] [data-amplify-router] {
+  background: white !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid #e2e8f0 !important;
+  border-top: 3px solid #2563eb !important;
+  max-width: 360px !important;
+  width: 100% !important;
+  padding: 1.5rem !important;
+  margin-top: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+[data-amplify-authenticator] [data-amplify-form] {
+  margin: 0 !important;
+}
+
+[data-amplify-authenticator] [data-amplify-field] {
+  margin-bottom: 1rem !important;
+}
+
+[data-amplify-authenticator] [data-amplify-field] label {
+  color: #1e293b !important;
+  font-weight: 500 !important;
+  font-size: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+[data-amplify-authenticator] [data-amplify-field] input {
+  border: none !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem !important;
+  font-size: 0.75rem !important;
+  transition: all 0.2s !important;
+  background: #f8fafc !important;
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-amplify-authenticator] [data-amplify-field] input:focus {
+  background: white !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1), inset 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  outline: none !important;
+}
+
+[data-amplify-authenticator] [data-amplify-button] {
+  background: #2563eb !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important; /* slightly larger for readability */
+  color: #fff !important;
+  transition: background-color 0.2s, box-shadow 0.2s !important;
+  width: 100% !important;
+  margin-top: 1rem !important;
+}
+
+/* Explicitly force primary button states to brand blue shades */
+[data-amplify-authenticator] [data-amplify-button][data-variation="primary"],
+[data-amplify-authenticator] .amplify-button--primary {
+  background: #2563eb !important;
+  color: #fff !important;
+}
+
+[data-amplify-authenticator] [data-amplify-button][data-variation="primary"]:hover,
+[data-amplify-authenticator] .amplify-button--primary:hover {
+  background: #1d4ed8 !important;
+}
+
+[data-amplify-authenticator] [data-amplify-button][data-variation="primary"]:active,
+[data-amplify-authenticator] .amplify-button--primary:active {
+  background: #1e40af !important;
+}
+
+[data-amplify-authenticator] [data-amplify-button][data-variation="primary"]:focus,
+[data-amplify-authenticator] .amplify-button--primary:focus {
+  background: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.3) !important;
+  outline: none !important;
+}
+
+[data-amplify-authenticator] [data-amplify-button][data-variation="link"] {
+  background: transparent !important;
+  color: #2563eb !important;
+  text-decoration: underline !important;
+  padding: 0.5rem !important;
+  margin-top: 0.5rem !important;
+}
+
+[data-amplify-authenticator] [data-amplify-button][data-variation="link"]:hover {
+  background: #f1f5f9 !important;
+  color: #1d4ed8 !important;
+}
+
+[data-amplify-authenticator] [data-amplify-button]:hover {
+  background: #1d4ed8 !important;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.15), 0 4px 6px -4px rgba(37, 99, 235, 0.15) !important;
+}
+
+[data-amplify-authenticator] [data-amplify-button]:active {
+  background: #1e40af !important;
+}
+
+[data-amplify-authenticator] [data-amplify-tabs] {
+  border: none !important; /* remove top/bottom lines */
+  margin-bottom: 1.5rem !important;
+}
+
+
+
+
+[data-amplify-authenticator] [data-amplify-tab] {
+  color: #64748b !important;
+  font-weight: 500 !important;
+  font-size: 0.75rem !important;
+  padding: 0.75rem 1rem !important;
+  border: none !important;
+  background: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+[data-amplify-authenticator] [data-amplify-tab][data-state="active"] {
+  color: #2563eb !important;
+  border: none !important; /* remove any bottom/other borders */
+  box-shadow: none !important; /* remove possible underline via shadow */
+}
+
+[data-amplify-authenticator] [data-amplify-tab]:hover {
+  color: #2563eb !important;
+}
+
+/* Amplify Tabs (Sign In / Create account) specific overrides */
+[data-amplify-authenticator] .amplify-tabs__item {
+  color: #64748b !important; /* default muted */
+}
+
+[data-amplify-authenticator] .amplify-tabs__item:hover {
+  color: #2563eb !important;
+}
+
+[data-amplify-authenticator] .amplify-tabs__item--active {
+  color: #2563eb !important;
+  border: none !important; /* remove any underline */
+  box-shadow: none !important; /* ensure no pseudo underline */
+}
+
+[data-amplify-authenticator] .amplify-tabs__item:focus {
+  color: #2563eb !important;
+  outline: 2px solid #93c5fd !important;
+  outline-offset: 2px !important;
+}
+
+[data-amplify-authenticator] [data-amplify-alert] {
+  background: #fef2f2 !important;
+  border: 1px solid #fecaca !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem !important;
+  margin-bottom: 1rem !important;
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+}
+
+[data-amplify-authenticator] [data-amplify-alert][data-variation="success"] {
+  background: #f0fdf4 !important;
+  border-color: #bbf7d0 !important;
+  color: #16a34a !important;
+}
+
+[data-amplify-authenticator] [data-amplify-footer] {
+  margin-top: 1.5rem !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+[data-amplify-authenticator] [data-amplify-footer] a {
+  color: #2563eb !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+[data-amplify-authenticator] [data-amplify-footer] a:hover {
+  text-decoration: underline !important;
+}
+
+/* Force all Auth links to brand blue */
+[data-amplify-authenticator] a,
+[data-amplify-authenticator] .amplify-link,
+[data-amplify-authenticator] .amplify-button--link {
+  color: #2563eb !important;
+}
+
+[data-amplify-authenticator] a:hover,
+[data-amplify-authenticator] .amplify-link:hover,
+[data-amplify-authenticator] .amplify-button--link:hover {
+  color: #1d4ed8 !important;
+  text-decoration: underline !important;
+}
+
+[data-amplify-authenticator] a:visited,
+[data-amplify-authenticator] .amplify-link:visited {
+  color: #2563eb !important;
+}
+
+/* Ensure click/focus/active states are blue */
+[data-amplify-authenticator] a:focus,
+[data-amplify-authenticator] a:active,
+[data-amplify-authenticator] .amplify-link:focus,
+[data-amplify-authenticator] .amplify-link:active,
+[data-amplify-authenticator] .amplify-button--link:focus,
+[data-amplify-authenticator] .amplify-button--link:active {
+  color: #2563eb !important;
+  outline: 2px solid #93c5fd !important; /* light blue outline */
+  outline-offset: 2px !important;
+}
+
+[data-amplify-authenticator] [data-amplify-button]:focus,
+[data-amplify-authenticator] .amplify-button:focus {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3) !important;
+  outline: none !important;
+}
+
+[data-amplify-authenticator] [data-amplify-tab]:focus {
+  color: #2563eb !important;
+  border-bottom-color: #2563eb !important;
+}
+
+/* Set Amplify brand colors globally as a fallback */
+:root {
+  --amplify-colors-brand-primary: #2563eb;
+  --amplify-colors-brand-primary-10: #eff6ff;
+  --amplify-colors-brand-primary-20: #dbeafe;
+  --amplify-colors-brand-primary-40: #60a5fa;
+  --amplify-colors-brand-primary-60: #2563eb;
+  --amplify-colors-brand-primary-80: #1d4ed8;
+  --amplify-colors-brand-primary-90: #1e40af;
+  --amplify-colors-brand-primary-100: #1e3a8a;
+
+  --amplify-components-button-primary-background-color: #2563eb;
+  --amplify-components-button-primary-hover-background-color: #1d4ed8;
+  --amplify-components-button-primary-active-background-color: #1e40af;
+  --amplify-components-link-color: #2563eb;
+}
+
+/* Strong override for primary Sign in button */
+[data-amplify-authenticator] button.amplify-button[data-variation="primary"],
+[data-amplify-authenticator] .amplify-button--primary {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #fff !important;
+}
+
+[data-amplify-authenticator] button.amplify-button[data-variation="primary"]:hover,
+[data-amplify-authenticator] .amplify-button--primary:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+}
+
+[data-amplify-authenticator] button.amplify-button[data-variation="primary"]:active,
+[data-amplify-authenticator] .amplify-button--primary:active {
+  background-color: #1e40af !important;
+  border-color: #1e40af !important;
+}
+
+[data-amplify-authenticator] button.amplify-button[data-variation="primary"]:focus,
+[data-amplify-authenticator] .amplify-button--primary:focus {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3) !important;
+  outline: none !important;
+}

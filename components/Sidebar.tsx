@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 import { StepIndicator } from './StepIndicator';
 import { CompanyLogo, RefreshCw, ShoppingCartIcon, X, ExternalLinkIcon } from './Icons';
 import Button from './common/Button';
@@ -20,6 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   isOpen,
   onClose
 }) => {
+  const { user, signOut } = useAuthenticator();
   return (
     <aside className={`
       bg-slate-100 border-r border-slate-200/80 flex flex-col
@@ -46,6 +48,16 @@ const Sidebar: React.FC<SidebarProps> = ({
                 </span>
               )}
             </button>
+            {user && (
+              <button
+                onClick={() => signOut()}
+                className="p-2 rounded-full hover:bg-slate-200 transition-colors"
+                title="Logout"
+                aria-label="Logout"
+              >
+                <X className="w-5 h-5 text-slate-600" />
+              </button>
+            )}
           </div>
         </div>
 

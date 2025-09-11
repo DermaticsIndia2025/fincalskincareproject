@@ -8,6 +8,7 @@ import DoctorReport from './components/DoctorReport';
 import Report from './components/Report';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
+import AuthOnLogin from './components/AuthOnLogin';
 import CartDrawer from './components/CartDrawer';
 import ChatbotPage from './components/ChatbotPage';
 
@@ -184,6 +185,7 @@ const App: React.FC = () => {
   const isScrollableStep = step === 4 || step === 5;
   return (
     <div className={`w-full h-screen lg:grid lg:grid-cols-[350px,1fr] bg-brand-bg${!isScrollableStep ? ' overflow-hidden' : ''}`}> 
+      <AuthOnLogin />
        {isSidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/60 z-40 lg:hidden" 

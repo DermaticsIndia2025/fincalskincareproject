@@ -1,5 +1,6 @@
 import React from 'react';
-import { CompanyLogo, RefreshCw, ShoppingCartIcon, MenuIcon, ExternalLinkIcon } from './Icons';
+import { useAuthenticator } from '@aws-amplify/ui-react';
+import { CompanyLogo, RefreshCw, ShoppingCartIcon, MenuIcon, ExternalLinkIcon, KeyIcon } from './Icons';
 import Button from './common/Button';
 
 interface HeaderProps {
@@ -10,6 +11,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onReset, onCartClick, cartItemCount, onMenuClick }) => {
+  const { user, signOut } = useAuthenticator();
   return (
     <header className="w-full mx-auto p-4 flex items-center justify-between lg:hidden shrink-0 bg-white/90 backdrop-blur-md z-20 border-b border-slate-200">
       <div className="flex items-center gap-2">
@@ -21,6 +23,11 @@ const Header: React.FC<HeaderProps> = ({ onReset, onCartClick, cartItemCount, on
         </a>
       </div>
       <div className="flex items-center gap-2">
+        {user && (
+          <span className="hidden sm:inline text-sm text-brand-text-muted mr-1">
+            {user?.signInDetails?.loginId || (user as any)?.attributes?.email || 'Signed in'}
+          </span>
+        )}
         <Button onClick={onReset} variant="secondary" size="sm" className="gap-1.5 px-3">
             <RefreshCw className="w-4 h-4" />
             Reset
@@ -45,6 +52,27 @@ const Header: React.FC<HeaderProps> = ({ onReset, onCartClick, cartItemCount, on
                 </span>
             )}
         </Button>
+        {user && (
+          <>
+            <Button
+              onClick={() => signOut()}
+              variant="secondary"
+              size="sm"
+              className="gap-1.5 px-3 hidden sm:inline-flex"
+            >
+              Logout
+            </Button>
+            <Button
+              onClick={() => signOut()}
+              variant="secondary"
+              size="sm"
+              className="!p-2 !rounded-full sm:hidden"
+              title="Logout"
+            >
+              <KeyIcon className="w-5 h-5" />
+            </Button>
+          </>
+        )}
       </div>
     </header>
   );
