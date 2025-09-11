@@ -4,6 +4,9 @@ frontend:
     preBuild:
       commands:
         - npm ci
+        - echo "VITE_AMPLIFY_REGION=$VITE_AMPLIFY_REGION" >> .env
+        - echo "VITE_USER_POOL_ID=$VITE_USER_POOL_ID" >> .env
+        - echo "VITE_USER_POOL_CLIENT_ID=$VITE_USER_POOL_CLIENT_ID" >> .env
     build:
       commands:
         - npm run build
